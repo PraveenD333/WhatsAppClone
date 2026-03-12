@@ -34,7 +34,7 @@ export const ProtectedRoute = () => {
         return <Loader />
     }
     if (!isAuthenticated) {
-        return <Navigate to="/user-login" state={{ from: location }} replace />
+        return <Navigate to="/user-login" replace state={{ from: location }} />
     }
 
     //user is auth -render the protected route
