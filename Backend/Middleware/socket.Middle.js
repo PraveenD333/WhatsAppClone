@@ -1,4 +1,3 @@
-
 import jwt from "jsonwebtoken";
 
 // Socket.IO middleware
