@@ -7,6 +7,7 @@ import bodyParser from 'body-parser';
 import AuthRoute from './Routes/auth.route.js'
 import ChatRoute from './Routes/chat.route.js'
 import StatusRoute from './Routes/status.route.js'
+import { transporter } from '.Services/emai.js';
 
 
 const app = express();
@@ -29,6 +30,16 @@ app.use(cookieparser()); //parse token on every requsest
 app.use('/api/auth',AuthRoute)
 app.use('/api/chats',ChatRoute)
 app.use('/api/status',StatusRoute)
+
+app.get('/mail-test', async (req, res) => {
+    try {
+        await transporter.verify();
+        res.send('SMTP working');
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
 
 
 export default app;
