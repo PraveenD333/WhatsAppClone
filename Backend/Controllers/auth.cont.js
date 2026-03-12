@@ -88,6 +88,7 @@ export const verificationOtp = async (req, res) => {
         sameSite: "none", // cross-site for prod, lax for local
         maxAge: 24 * 60 * 60 * 1000, // 1 day
         });
+        res.setHeader("Authorization", `Bearer ${token}`);
         return successresponse(res, "OTP verified successfully", 200, { user, token });
     } catch (error) {
         return errorresponse(res, "Internal Server Error", 500, error)
