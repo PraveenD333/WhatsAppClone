@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import AuthRoute from './Routes/auth.route.js'
 import ChatRoute from './Routes/chat.route.js'
 import StatusRoute from './Routes/status.route.js'
-import { transporter } from '.Services/emai.js';
+import { transporter } from './Services/emai.serv.js';
 
 
 const app = express();
