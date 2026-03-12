@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import Layout from '../../Components/Layout';
 import { FaComment, FaMoon, FaQuestionCircle, FaSearch, FaSignInAlt, FaSun, FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { disconnectSocket } from '../../Services/chat.service.js';
 
 
 const Setting = () => {
@@ -22,6 +23,7 @@ const Setting = () => {
     try {
       await logOut();
       clearUser();
+      disconnectSocket();
       toast.success("Logout Successfully");
     } catch (error) {
       console.error("Failed to Logout", error);
