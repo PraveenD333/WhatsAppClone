@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiUrl = `${import.meta.env.VITE_BACKEND_API_URL}/api`;
 
-const getToken() => localStorage.getItem("auth_token")
+const getToke = () => localStorage.getItem("auth_token")
 
 // Interceptor to add Authorization header
 axiosInstance.interceptors.request.use((config) => {
