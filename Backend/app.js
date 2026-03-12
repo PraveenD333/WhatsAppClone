@@ -21,8 +21,8 @@ app.use (cors({
 
 //Middleware
 app.use(express.json()); //parse body data
-app.use(cookieparser()); //parse token on every requsest
 app.use(bodyParser.urlencoded({extended:true})); // parse form data
+app.use(cookieparser()); //parse token on every requsest
 
 
 //Routes
