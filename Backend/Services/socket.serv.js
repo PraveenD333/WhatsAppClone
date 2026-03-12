@@ -2,6 +2,7 @@ import { Server } from 'socket.io'
 import UserModel from '../Models/user.model.js'
 import MessageModel from '../Models/message.model.js'
 import handleVideoCallEvent from './video.sev.js';
+import { socketAuthMiddleware } from "./middlewares/socketAuthMiddleware.js";
 
 
 // Map to Store online Users -> UserId SocketID
@@ -20,6 +21,9 @@ const initializeSocket = (server) => {
         pingTimeout: 60000  //Disconnect InActive User or Socket's After 60s
     });
 
+    // Use middleware
+    io.use(socketAuthMiddleware);
+    
     // When a new socket connection is established
     io.on("connection", (socket) => {
         console.log(`User Connected: ${socket.id}`)
