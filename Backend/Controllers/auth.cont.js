@@ -158,7 +158,12 @@ export const getAlluser = async (req, res) => {
 
 export const logOut = (req, res) => {
     try {
-        res.cookie("auth_token", "", { expires: new Date(0) });
+        res.cookie("auth_token", "", { 
+        httpOnly: true, // prevents JS from accessing cookie
+        secure: true, // only HTTPS in prod
+        sameSite: "none", // cross-site for prod, lax for local
+        expires: new Date(0) 
+        });
         return successresponse(res, "Logged out successfully", 200);
     } catch (error) {
         return errorresponse(res, "Internal Server Error", 500, error)
