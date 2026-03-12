@@ -21,7 +21,9 @@ export const ProtectedRoute = () => {
                     clearUser()
                 }
             } catch (error) {
-                console.error(error);
+                if(error?.response?.status !== 401){
+                    console.error(error);
+                }
                 clearUser();
             } finally {
                 setIsChecking(false)
