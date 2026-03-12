@@ -11,26 +11,34 @@ export const ProtectedRoute = () => {
     const { isAuthenticated, setUser, clearUser } = useUserStore();
 
 
-    useEffect(() => {
-        const verifyAuth = async () => {
-            try {
-                const result = await checkAuth()
-                if (result?.isAuthenticated) {
-                    setUser(result.user)
-                } else {
-                    clearUser()
-                }
-            } catch (error) {
-                if(error?.response?.status !== 401){
-                    console.error(error);
-                }
+ useEffect(() => {
+    if (isAuthenticated) {
+        setIsChecking(false);
+        return;
+    }
+
+    const verifyAuth = async () => {
+        try {
+            const result = await checkAuth();
+
+            if (result?.user) {
+                setUser(result.user);
+            } else {
                 clearUser();
-            } finally {
-                setIsChecking(false)
             }
+
+        } catch (error) {
+            if (error?.response?.status !== 401) {
+                console.error(error);
+            }
+            clearUser();
+        } finally {
+            setIsChecking(false);
         }
-        verifyAuth();
-    }, [setUser, clearUser])
+    };
+
+    verifyAuth();
+}, [isAuthenticated, setUser, clearUser]);
 
     if (isChecking) {
         return <Loader />
