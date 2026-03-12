@@ -2,7 +2,7 @@ import { Server } from 'socket.io'
 import UserModel from '../Models/user.model.js'
 import MessageModel from '../Models/message.model.js'
 import handleVideoCallEvent from './video.sev.js';
-import { socketAuthMiddleware } from "./middlewares/socketAuthMiddleware.js";
+import { socketAuthMiddleware } from "../Middleware/socket.Middle.js";
 
 
 // Map to Store online Users -> UserId SocketID
