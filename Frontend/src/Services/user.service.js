@@ -52,6 +52,7 @@ export const getAllUsers = async () => {
 export const logOut = async () => {
     try {
         const response = await axiosInstance.get('/auth/logout');
+        localStorage.removeItem("auth_token");
         return response.data;
     } catch (error) {
         throw error.response ? error.response.data : error.message;
