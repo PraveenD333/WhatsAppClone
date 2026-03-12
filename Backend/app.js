@@ -11,6 +11,9 @@ import StatusRoute from './Routes/status.route.js'
 
 const app = express();
 
+// Add trust proxy for Render
+app.set("trust proxy", 1);
+
 app.use (cors({
     origin:process.env.FRONTEND_URL,
     credentials:true,
