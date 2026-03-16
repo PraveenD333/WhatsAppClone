@@ -1,0 +1,11 @@
+Backend/node_modules/
+Frontend/node_modules/
+
+Backend/.env
+Frontend/.env
+
+Frontend/.next/
+Frontend/out/
+
+Frontend/dist/
+Backend/dist/
